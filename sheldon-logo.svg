@@ -1,152 +1,204 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 190" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 280" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
-    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0C101A" />
-      <stop offset="100%" stop-color="#05070B" />
-    </linearGradient>
-
-    <linearGradient id="logoBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(56, 189, 248, 0.5)" />
-      <stop offset="50%" stop-color="rgba(255, 255, 255, 0.15)" />
-      <stop offset="100%" stop-color="rgba(244, 63, 94, 0.35)" />
-    </linearGradient>
-
-    <linearGradient id="logoTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="60%" stop-color="#F1F5F9" />
-      <stop offset="100%" stop-color="#CBD5E1" />
-    </linearGradient>
-
-    <linearGradient id="logoTopEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00F2FE" />
-      <stop offset="60%" stop-color="#6366F1" />
-      <stop offset="100%" stop-color="#F43F5E" />
-    </linearGradient>
-
-    <linearGradient id="logoBotEdge" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10B981" />
-      <stop offset="45%" stop-color="#8B5CF6" />
-      <stop offset="100%" stop-color="#F43F5E" />
-    </linearGradient>
-
-    <linearGradient id="logoPlane" x1="0%" y1="50%" x2="100%" y2="50%">
-      <stop offset="0%" stop-color="rgba(0, 242, 254, 0.06)" />
-      <stop offset="50%" stop-color="rgba(99, 102, 241, 0.14)" />
-      <stop offset="100%" stop-color="rgba(244, 63, 94, 0.24)" />
-    </linearGradient>
-
-    <radialGradient id="logoV1Aura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00F2FE" stop-opacity="1" />
-      <stop offset="100%" stop-color="#00F2FE" stop-opacity="0" />
-    </radialGradient>
-
-    <radialGradient id="logoV2Aura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#F43F5E" stop-opacity="1" />
-      <stop offset="100%" stop-color="#F43F5E" stop-opacity="0" />
-    </radialGradient>
-
-    <radialGradient id="logoV3Aura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#10B981" stop-opacity="1" />
-      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
-    </radialGradient>
-
-    <filter id="logoGlow" x="-25%" y="-25%" width="150%" height="150%">
-      <feGaussianBlur stdDeviation="7" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-
     <style><![CDATA[
-      .font-mono { font-family: 'JetBrains Mono', Consolas, monospace; }
-      @keyframes logoSonarV1 {
-        0%, 5% { r: 5px; opacity: 0; }
-        8% { r: 7px; opacity: 1; }
-        24% { r: 24px; opacity: 0; }
+      /* 1. THREE DOTS PULSE TO SIGNAL BEFORE CONNECTING (0% -> 14%) */
+      @keyframes pulseDotV1 {
+        0%, 5% { r: 8px; opacity: 0; stroke-width: 2.5px; }
+        8% { r: 10px; opacity: 0.9; stroke-width: 2px; }
+        24% { r: 30px; opacity: 0; stroke-width: 0.8px; }
         100% { opacity: 0; }
       }
-      @keyframes logoSonarV3 {
-        0%, 7% { r: 5px; opacity: 0; }
-        10% { r: 7px; opacity: 1; }
-        26% { r: 24px; opacity: 0; }
+
+      @keyframes pulseDotV3 {
+        0%, 7% { r: 8px; opacity: 0; stroke-width: 2.5px; }
+        10% { r: 10px; opacity: 0.9; stroke-width: 2px; }
+        26% { r: 30px; opacity: 0; stroke-width: 0.8px; }
         100% { opacity: 0; }
       }
-      @keyframes logoDrawLine {
-        0%, 10% { stroke-dashoffset: 110; opacity: 0.2; }
-        14% { opacity: 1; }
-        38%, 84% { stroke-dashoffset: 0; opacity: 1; }
-        92%, 100% { stroke-dashoffset: 110; opacity: 0.15; }
+
+      /* 2. SOLID LINES ACTIVELY DRAW FROM V1 AND V3 TO MEET AT V2 (14% -> 42%) */
+      @keyframes drawConnectingLine {
+        0%, 12% {
+          stroke-dashoffset: 140;
+          opacity: 0.15;
+        }
+        16% {
+          opacity: 1;
+        }
+        40%, 82% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        90%, 100% {
+          stroke-dashoffset: 140;
+          opacity: 0.15;
+        }
       }
-      @keyframes logoChordDraw {
-        0%, 15% { stroke-dashoffset: 100; opacity: 0; }
-        20% { opacity: 0.8; }
-        40%, 84% { stroke-dashoffset: 0; opacity: 0.8; }
-        92%, 100% { stroke-dashoffset: 100; opacity: 0; }
+
+      /* 3. BASE CHORD CONNECTING V1 TO V3 (16% -> 42%) */
+      @keyframes drawChord {
+        0%, 14% {
+          stroke-dashoffset: 150;
+          opacity: 0;
+        }
+        18% {
+          opacity: 0.55;
+        }
+        40%, 82% {
+          stroke-dashoffset: 0;
+          opacity: 0.55;
+        }
+        90%, 100% {
+          stroke-dashoffset: 150;
+          opacity: 0;
+        }
       }
-      @keyframes logoApexBurst {
-        0%, 36% { r: 6px; opacity: 0; }
-        39% { r: 8px; opacity: 1; }
-        56% { r: 28px; opacity: 0; }
-        100% { opacity: 0; }
+
+      /* 4. LEADING HEAD ON ADVANCING LINE (Gives distinct visual motion) */
+      @keyframes leadBead {
+        0%, 12% {
+          stroke-dashoffset: 145;
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        40% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        42%, 100% {
+          opacity: 0;
+        }
       }
-      @keyframes logoFacetLight {
-        0%, 36% { opacity: 0; }
-        40%, 82% { opacity: 1; }
-        92%, 100% { opacity: 0; }
+
+      /* 5. APEX IMPACT SHOCKWAVE (detonates when lines meet at V2 at 40%) */
+      @keyframes apexImpactWave {
+        0%, 38% {
+          r: 9px;
+          opacity: 0;
+          stroke-width: 3px;
+        }
+        41% {
+          r: 12px;
+          opacity: 1;
+          stroke-width: 2.5px;
+        }
+        60% {
+          r: 42px;
+          opacity: 0;
+          stroke-width: 0.8px;
+        }
+        100% {
+          opacity: 0;
+        }
       }
-      .l-sonar-1 { animation: logoSonarV1 4.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite; }
-      .l-sonar-3 { animation: logoSonarV3 4.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite; }
-      .l-draw { stroke-dasharray: 110; animation: logoDrawLine 4.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite; }
-      .l-chord { stroke-dasharray: 100; animation: logoChordDraw 4.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite; }
-      .l-burst { animation: logoApexBurst 4.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite; }
-      .l-facet { animation: logoFacetLight 4.8s ease-in-out infinite; }
+
+      /* 6. APEX CORE BURST UPON IMPACT */
+      @keyframes apexCoreFlash {
+        0%, 38% {
+          transform: scale(1);
+          fill: #FFFFFF;
+        }
+        41% {
+          transform: scale(1.35);
+          fill: #FFFFFF;
+        }
+        48% {
+          transform: scale(1);
+          fill: #FFFFFF;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .anim-v1-pulse {
+        animation: pulseDotV1 4.4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+        transform-origin: 0 0;
+      }
+      .anim-v3-pulse {
+        animation: pulseDotV3 4.4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+        transform-origin: 0 0;
+      }
+      .anim-connect {
+        stroke-dasharray: 140;
+        animation: drawConnectingLine 4.4s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-chord {
+        stroke-dasharray: 150;
+        animation: drawChord 4.4s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-lead {
+        stroke-dasharray: 20 140;
+        animation: leadBead 4.4s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-apex-wave {
+        animation: apexImpactWave 4.4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+        transform-origin: 0 0;
+      }
+      .anim-apex-core {
+        animation: apexCoreFlash 4.4s ease-out infinite;
+        transform-origin: 0 0;
+      }
     ]]></style>
   </defs>
 
-  <rect x="6" y="6" width="748" height="178" rx="16" ry="16" fill="url(#logoBg)" stroke="url(#logoBorder)" stroke-width="1.5" />
+  <!-- Clean, Matte, Basic Carbon Background -->
+  <rect x="6" y="6" width="1128" height="268" rx="18" ry="18" fill="#0D1117" stroke="#21262D" stroke-width="1.5" />
 
-  <path d="M 83.83 126.12 Q 75.20 126.12 68.76 123.09 Q 62.32 120.06 58.78 114.53 Q 55.27 108.99 55.27 101.48 L 71.61 101.48 Q 71.61 106.06 74.92 108.81 Q 78.23 111.56 83.83 111.56 Q 89.31 111.56 92.39 108.94 Q 95.47 106.29 95.47 101.94 Q 95.47 98.45 93.45 95.72 Q 91.44 92.97 87.52 92.06 L 77.55 89.72 Q 67.92 87.48 62.27 81.04 Q 56.62 74.60 56.62 65.64 Q 56.62 54.67 63.72 48.40 Q 70.83 42.12 83.15 42.12 Q 95.47 42.12 102.75 48.45 Q 110.03 54.77 110.03 65.53 L 93.68 65.53 Q 93.68 61.26 90.88 58.87 Q 88.08 56.45 83.15 56.45 Q 78.33 56.45 75.64 58.81 Q 72.96 61.16 72.96 65.08 Q 72.96 71.47 80.70 73.25 L 90.99 75.61 Q 100.63 77.73 106.28 84.85 Q 111.93 91.96 111.93 101.94 Q 111.93 109.22 108.52 114.71 Q 105.11 120.19 98.77 123.16 Q 92.46 126.12 83.83 126.12 Z M 124.59 125.00 L 124.59 43.24 L 141.38 43.24 L 141.38 75.05 L 160.22 75.05 L 160.22 43.24 L 177.02 43.24 L 177.02 125.00 L 160.22 125.00 L 160.22 90.17 L 141.38 90.17 L 141.38 125.00 L 124.59 125.00 Z M 193.36 125.00 L 193.36 43.24 L 243.76 43.24 L 243.76 57.80 L 209.83 57.80 L 209.83 76.17 L 239.84 76.17 L 239.84 90.05 L 209.83 90.05 L 209.83 110.44 L 243.76 110.44 L 243.76 125.00 L 193.36 125.00 Z M 264.48 125.00 L 264.48 43.24 L 281.28 43.24 L 281.28 109.88 L 314.32 109.88 L 314.32 125.00 L 264.48 125.00 Z M 325.85 125.00 L 325.85 43.24 L 352.40 43.24 Q 360.91 43.24 367.24 46.49 Q 373.58 49.73 377.09 55.61 Q 380.63 61.49 380.63 69.45 L 380.63 98.68 Q 380.63 106.52 377.09 112.45 Q 373.58 118.39 367.24 121.69 Q 360.91 125.00 352.40 125.00 L 325.85 125.00 Z M 342.65 109.88 L 352.40 109.88 Q 357.44 109.88 360.63 106.75 Q 363.83 103.61 363.83 98.68 L 363.83 69.45 Q 363.83 64.52 360.63 61.44 Q 357.44 58.36 352.40 58.36 L 342.65 58.36 L 342.65 109.88 Z M 419.60 126.12 Q 407.28 126.12 400.00 119.17 Q 392.72 112.22 392.72 100.36 L 392.72 67.88 Q 392.72 55.89 400.00 49.01 Q 407.28 42.12 419.60 42.12 Q 431.92 42.12 439.20 49.01 Q 446.48 55.89 446.48 67.88 L 446.48 100.36 Q 446.48 112.22 439.20 119.17 Q 431.92 126.12 419.60 126.12 Z M 419.60 111.56 Q 429.68 111.56 429.68 101.48 L 429.68 66.76 Q 429.68 56.68 419.60 56.68 Q 409.52 56.68 409.52 66.76 L 409.52 101.48 Q 409.52 111.56 419.60 111.56 Z M 459.92 125.00 L 459.92 43.24 L 479.52 43.24 L 500.70 106.52 Q 500.35 102.37 499.89 96.95 Q 499.45 91.50 499.17 86.08 Q 498.89 80.66 498.89 76.84 L 498.89 43.24 L 513.68 43.24 L 513.68 125.00 L 494.08 125.00 L 473.13 61.72 Q 473.47 65.31 473.80 70.24 Q 474.15 75.16 474.43 80.20 Q 474.71 85.24 474.71 89.16 L 474.71 125.00 L 459.92 125.00 Z" fill="#000000" opacity="0.6" filter="url(#logoGlow)" />
-  <path d="M 83.83 126.12 Q 75.20 126.12 68.76 123.09 Q 62.32 120.06 58.78 114.53 Q 55.27 108.99 55.27 101.48 L 71.61 101.48 Q 71.61 106.06 74.92 108.81 Q 78.23 111.56 83.83 111.56 Q 89.31 111.56 92.39 108.94 Q 95.47 106.29 95.47 101.94 Q 95.47 98.45 93.45 95.72 Q 91.44 92.97 87.52 92.06 L 77.55 89.72 Q 67.92 87.48 62.27 81.04 Q 56.62 74.60 56.62 65.64 Q 56.62 54.67 63.72 48.40 Q 70.83 42.12 83.15 42.12 Q 95.47 42.12 102.75 48.45 Q 110.03 54.77 110.03 65.53 L 93.68 65.53 Q 93.68 61.26 90.88 58.87 Q 88.08 56.45 83.15 56.45 Q 78.33 56.45 75.64 58.81 Q 72.96 61.16 72.96 65.08 Q 72.96 71.47 80.70 73.25 L 90.99 75.61 Q 100.63 77.73 106.28 84.85 Q 111.93 91.96 111.93 101.94 Q 111.93 109.22 108.52 114.71 Q 105.11 120.19 98.77 123.16 Q 92.46 126.12 83.83 126.12 Z M 124.59 125.00 L 124.59 43.24 L 141.38 43.24 L 141.38 75.05 L 160.22 75.05 L 160.22 43.24 L 177.02 43.24 L 177.02 125.00 L 160.22 125.00 L 160.22 90.17 L 141.38 90.17 L 141.38 125.00 L 124.59 125.00 Z M 193.36 125.00 L 193.36 43.24 L 243.76 43.24 L 243.76 57.80 L 209.83 57.80 L 209.83 76.17 L 239.84 76.17 L 239.84 90.05 L 209.83 90.05 L 209.83 110.44 L 243.76 110.44 L 243.76 125.00 L 193.36 125.00 Z M 264.48 125.00 L 264.48 43.24 L 281.28 43.24 L 281.28 109.88 L 314.32 109.88 L 314.32 125.00 L 264.48 125.00 Z M 325.85 125.00 L 325.85 43.24 L 352.40 43.24 Q 360.91 43.24 367.24 46.49 Q 373.58 49.73 377.09 55.61 Q 380.63 61.49 380.63 69.45 L 380.63 98.68 Q 380.63 106.52 377.09 112.45 Q 373.58 118.39 367.24 121.69 Q 360.91 125.00 352.40 125.00 L 325.85 125.00 Z M 342.65 109.88 L 352.40 109.88 Q 357.44 109.88 360.63 106.75 Q 363.83 103.61 363.83 98.68 L 363.83 69.45 Q 363.83 64.52 360.63 61.44 Q 357.44 58.36 352.40 58.36 L 342.65 58.36 L 342.65 109.88 Z M 419.60 126.12 Q 407.28 126.12 400.00 119.17 Q 392.72 112.22 392.72 100.36 L 392.72 67.88 Q 392.72 55.89 400.00 49.01 Q 407.28 42.12 419.60 42.12 Q 431.92 42.12 439.20 49.01 Q 446.48 55.89 446.48 67.88 L 446.48 100.36 Q 446.48 112.22 439.20 119.17 Q 431.92 126.12 419.60 126.12 Z M 419.60 111.56 Q 429.68 111.56 429.68 101.48 L 429.68 66.76 Q 429.68 56.68 419.60 56.68 Q 409.52 56.68 409.52 66.76 L 409.52 101.48 Q 409.52 111.56 419.60 111.56 Z M 459.92 125.00 L 459.92 43.24 L 479.52 43.24 L 500.70 106.52 Q 500.35 102.37 499.89 96.95 Q 499.45 91.50 499.17 86.08 Q 498.89 80.66 498.89 76.84 L 498.89 43.24 L 513.68 43.24 L 513.68 125.00 L 494.08 125.00 L 473.13 61.72 Q 473.47 65.31 473.80 70.24 Q 474.15 75.16 474.43 80.20 Q 474.71 85.24 474.71 89.16 L 474.71 125.00 L 459.92 125.00 Z" fill="url(#logoTextGrad)" />
+  <!-- =========================================================================
+       "SHELDON" (BIG, BOLD, CRISP WHITE)
+       ========================================================================= -->
+  <path d="M 193.93 202.68 Q 180.99 202.68 171.33 198.14 Q 161.67 193.60 156.37 185.30 Q 151.09 176.98 151.09 165.72 L 175.61 165.72 Q 175.61 172.60 180.57 176.72 Q 185.53 180.84 193.93 180.84 Q 202.15 180.84 206.77 176.90 Q 211.39 172.94 211.39 166.40 Q 211.39 161.18 208.37 157.08 Q 205.35 152.96 199.47 151.60 L 184.51 148.08 Q 170.07 144.72 161.59 135.06 Q 153.11 125.40 153.11 111.96 Q 153.11 95.50 163.77 86.10 Q 174.43 76.68 192.91 76.68 Q 211.39 76.68 222.31 86.18 Q 233.23 95.66 233.23 111.80 L 208.71 111.80 Q 208.71 105.40 204.51 101.80 Q 200.31 98.18 192.91 98.18 Q 185.69 98.18 181.65 101.72 Q 177.63 105.24 177.63 111.12 Q 177.63 120.70 189.23 123.38 L 204.67 126.92 Q 219.13 130.10 227.61 140.78 Q 236.09 151.44 236.09 166.40 Q 236.09 177.32 230.97 185.56 Q 225.85 193.78 216.35 198.24 Q 206.87 202.68 193.93 202.68 Z M 255.07 201.00 L 255.07 78.36 L 280.27 78.36 L 280.27 126.08 L 308.51 126.08 L 308.51 78.36 L 333.71 78.36 L 333.71 201.00 L 308.51 201.00 L 308.51 148.76 L 280.27 148.76 L 280.27 201.00 L 255.07 201.00 Z M 358.23 201.00 L 358.23 78.36 L 433.83 78.36 L 433.83 100.20 L 382.93 100.20 L 382.93 127.76 L 427.95 127.76 L 427.95 148.58 L 382.93 148.58 L 382.93 179.16 L 433.83 179.16 L 433.83 201.00 L 358.23 201.00 Z M 464.91 201.00 L 464.91 78.36 L 490.11 78.36 L 490.11 178.32 L 539.67 178.32 L 539.67 201.00 L 464.91 201.00 Z M 556.97 201.00 L 556.97 78.36 L 596.79 78.36 Q 609.55 78.36 619.05 83.24 Q 628.55 88.10 633.83 96.92 Q 639.13 105.74 639.13 117.68 L 639.13 161.52 Q 639.13 173.28 633.83 182.18 Q 628.55 191.08 619.05 196.04 Q 609.55 201.00 596.79 201.00 L 556.97 201.00 Z M 582.17 178.32 L 596.79 178.32 Q 604.35 178.32 609.13 173.62 Q 613.93 168.92 613.93 161.52 L 613.93 117.68 Q 613.93 110.28 609.13 105.66 Q 604.35 101.04 596.79 101.04 L 582.17 101.04 L 582.17 178.32 Z M 697.59 202.68 Q 679.11 202.68 668.19 192.26 Q 657.27 181.84 657.27 164.04 L 657.27 115.32 Q 657.27 97.34 668.19 87.02 Q 679.11 76.68 697.59 76.68 Q 716.07 76.68 726.99 87.02 Q 737.91 97.34 737.91 115.32 L 737.91 164.04 Q 737.91 181.84 726.99 192.26 Q 716.07 202.68 697.59 202.68 Z M 697.59 180.84 Q 712.71 180.84 712.71 165.72 L 712.71 113.64 Q 712.71 98.52 697.59 98.52 Q 682.47 98.52 682.47 113.64 L 682.47 165.72 Q 682.47 180.84 697.59 180.84 Z M 758.07 201.00 L 758.07 78.36 L 787.47 78.36 L 819.23 173.28 Q 818.71 167.06 818.03 158.92 Q 817.37 150.76 816.95 142.62 Q 816.53 134.48 816.53 128.76 L 816.53 78.36 L 838.71 78.36 L 838.71 201.00 L 809.31 201.00 L 777.89 106.08 Q 778.39 111.46 778.89 118.86 Q 779.41 126.24 779.83 133.80 Q 780.25 141.36 780.25 147.24 L 780.25 201.00 L 758.07 201.00 Z" fill="#FFFFFF" />
 
-  <g opacity="0.12">
-    <line x1="544.41" y1="48.00" x2="642.41" y2="96.00" stroke="#00F2FE" stroke-width="2" stroke-linecap="round" />
-    <line x1="544.41" y1="144.00" x2="642.41" y2="96.00" stroke="#10B981" stroke-width="2" stroke-linecap="round" />
+  <!-- =========================================================================
+       ">" FORMED BY JOINING THE THREE VERTICES (ANIMATED CONNECTION)
+       ========================================================================= -->
+  <g id="vertex-chevron">
+
+    <!-- Faint Guide Trajectory (Shows the path before the dots connect) -->
+    <g opacity="0.12" stroke="#FFFFFF" stroke-linecap="round">
+      <line x1="878.81" y1="71.00" x2="996.81" y2="138.00" stroke-width="2.5" />
+      <line x1="878.81" y1="211.00" x2="996.81" y2="138.00" stroke-width="2.5" />
+      <line x1="878.81" y1="71.00" x2="878.81" y2="211.00" stroke-width="1.5" stroke-dasharray="4 4" />
+    </g>
+
+    <!-- Base Chord connecting Vertex 1 and Vertex 3 -->
+    <line x1="878.81" y1="71.00" x2="878.81" y2="211.00" stroke="#6E7681" stroke-width="2" stroke-dasharray="4 4" class="anim-chord" />
+
+    <!-- Solid, Smooth White Connecting Beams (V1 -> V2 and V3 -> V2) -->
+    <line x1="878.81" y1="71.00" x2="996.81" y2="138.00" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" class="anim-connect" />
+    <line x1="878.81" y1="211.00" x2="996.81" y2="138.00" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" class="anim-connect" />
+
+    <!-- Leading Tip Bead (Visual marker leading the growing line) -->
+    <line x1="878.81" y1="71.00" x2="996.81" y2="138.00" stroke="#E5E7EB" stroke-width="10" stroke-linecap="round" class="anim-lead" />
+    <line x1="878.81" y1="211.00" x2="996.81" y2="138.00" stroke="#E5E7EB" stroke-width="10" stroke-linecap="round" class="anim-lead" />
+
+    <!-- =======================================================================
+         THE THREE PROMINENT VERTEX DOTS
+         ======================================================================= -->
+
+    <!-- VERTEX 1 (Top Dot) -->
+    <g transform="translate(878.81, 71.00)">
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#FFFFFF" class="anim-v1-pulse" />
+      <circle cx="0" cy="0" r="14" fill="none" stroke="#30363D" stroke-width="2" />
+      <circle cx="0" cy="0" r="8" fill="#FFFFFF" />
+    </g>
+
+    <!-- VERTEX 2 (Apex Dot: where the lines meet & form >) -->
+    <g transform="translate(996.81, 138.00)">
+      <circle cx="0" cy="0" r="12" fill="none" stroke="#FFFFFF" class="anim-apex-wave" />
+      <circle cx="0" cy="0" r="15" fill="none" stroke="#30363D" stroke-width="2" />
+      <circle cx="0" cy="0" r="9" fill="#FFFFFF" class="anim-apex-core" />
+    </g>
+
+    <!-- VERTEX 3 (Bottom Dot) -->
+    <g transform="translate(878.81, 211.00)">
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#FFFFFF" class="anim-v1-pulse" />
+      <circle cx="0" cy="0" r="14" fill="none" stroke="#30363D" stroke-width="2" />
+      <circle cx="0" cy="0" r="8" fill="#FFFFFF" />
+    </g>
+
   </g>
-
-  <polygon points="544.41,48.00 642.41,96.00 544.41,144.00" fill="url(#logoPlane)" class="l-facet" />
-  <line x1="544.41" y1="48.00" x2="544.41" y2="144.00" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1.5" stroke-dasharray="3 3" class="l-chord" />
-
-  <line x1="544.41" y1="48.00" x2="642.41" y2="96.00" stroke="url(#logoTopEdge)" stroke-width="14" stroke-linecap="round" filter="url(#logoGlow)" opacity="0.3" class="l-draw" />
-  <line x1="544.41" y1="144.00" x2="642.41" y2="96.00" stroke="url(#logoBotEdge)" stroke-width="14" stroke-linecap="round" filter="url(#logoGlow)" opacity="0.3" class="l-draw" />
-
-  <line x1="544.41" y1="48.00" x2="642.41" y2="96.00" stroke="url(#logoTopEdge)" stroke-width="4.8" stroke-linecap="round" class="l-draw" />
-  <line x1="544.41" y1="144.00" x2="642.41" y2="96.00" stroke="url(#logoBotEdge)" stroke-width="4.8" stroke-linecap="round" class="l-draw" />
-  <line x1="544.41" y1="48.00" x2="642.41" y2="96.00" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.9" class="l-draw" />
-  <line x1="544.41" y1="144.00" x2="642.41" y2="96.00" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.9" class="l-draw" />
-
-  <g transform="translate(544.41, 48.00)">
-    <circle cx="0" cy="0" r="8" fill="none" stroke="#00F2FE" class="l-sonar-1" />
-    <circle cx="0" cy="0" r="18" fill="url(#logoV1Aura)" />
-    <circle cx="0" cy="0" r="5.5" fill="#00F2FE" stroke="#FFFFFF" stroke-width="1.8" />
-    <text x="0" y="-14" fill="#38BDF8" font-size="8.5" font-weight="700" class="font-mono" text-anchor="middle">v₁</text>
-  </g>
-
-  <g transform="translate(642.41, 96.00)">
-    <circle cx="0" cy="0" r="10" fill="none" stroke="#F43F5E" class="l-burst" />
-    <circle cx="0" cy="0" r="22" fill="url(#logoV2Aura)" />
-    <circle cx="0" cy="0" r="6.5" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2" />
-    <text x="18" y="3.5" fill="#FB7185" font-size="9" font-weight="700" class="font-mono">v₂ &gt;</text>
-  </g>
-
-  <g transform="translate(544.41, 144.00)">
-    <circle cx="0" cy="0" r="8" fill="none" stroke="#10B981" class="l-sonar-3" />
-    <circle cx="0" cy="0" r="18" fill="url(#logoV3Aura)" />
-    <circle cx="0" cy="0" r="5.5" fill="#10B981" stroke="#FFFFFF" stroke-width="1.8" />
-    <text x="0" y="20" fill="#34D399" font-size="8.5" font-weight="700" class="font-mono" text-anchor="middle">v₃</text>
-  </g>
-
-  <text x="50" y="158" fill="#64748B" font-size="10" font-weight="600" class="font-mono" letter-spacing="0.15em">
-    SHARED AGENT MEMORY • FALKORDB PROPERTY GRAPH
-  </text>
 </svg>
