@@ -1,30 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
-    <!-- Background Gradient for Modern Screen -->
     <linearGradient id="screenBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0C101A" />
       <stop offset="50%" stop-color="#080B14" />
       <stop offset="100%" stop-color="#04060A" />
     </linearGradient>
 
-    <!-- Sleek Screen Glass Border -->
     <linearGradient id="screenBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(56, 189, 248, 0.6)" />
-      <stop offset="28%" stop-color="rgba(255, 255, 255, 0.18)" />
-      <stop offset="68%" stop-color="rgba(168, 85, 247, 0.42)" />
-      <stop offset="100%" stop-color="rgba(244, 63, 94, 0.4)" />
+      <stop offset="0%" stop-color="rgba(56, 189, 248, 0.65)" />
+      <stop offset="28%" stop-color="rgba(255, 255, 255, 0.2)" />
+      <stop offset="68%" stop-color="rgba(168, 85, 247, 0.45)" />
+      <stop offset="100%" stop-color="rgba(244, 63, 94, 0.45)" />
     </linearGradient>
 
-    <!-- Header Accent Hairline -->
     <linearGradient id="headerAccent" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="rgba(56, 189, 248, 0)" />
-      <stop offset="20%" stop-color="rgba(56, 189, 248, 0.75)" />
-      <stop offset="50%" stop-color="rgba(255, 255, 255, 0.5)" />
-      <stop offset="80%" stop-color="rgba(244, 63, 94, 0.75)" />
+      <stop offset="20%" stop-color="rgba(56, 189, 248, 0.8)" />
+      <stop offset="50%" stop-color="rgba(255, 255, 255, 0.55)" />
+      <stop offset="80%" stop-color="rgba(244, 63, 94, 0.8)" />
       <stop offset="100%" stop-color="rgba(244, 63, 94, 0)" />
     </linearGradient>
 
-    <!-- SHELDON Metallic Text Gradient -->
     <linearGradient id="sheldonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#FFFFFF" />
       <stop offset="45%" stop-color="#F8FAFC" />
@@ -32,65 +28,65 @@
       <stop offset="100%" stop-color="#CBD5E1" />
     </linearGradient>
 
-    <!-- Chevron Edge Gradients -->
     <linearGradient id="edgeTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00F2FE" />
       <stop offset="55%" stop-color="#6366F1" />
       <stop offset="100%" stop-color="#F43F5E" />
     </linearGradient>
 
-    <linearGradient id="edgeBotGrad" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#F43F5E" />
-      <stop offset="45%" stop-color="#8B5CF6" />
+    <linearGradient id="edgeBotGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="55%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+
+    <linearGradient id="chordGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE" />
+      <stop offset="50%" stop-color="#6366F1" />
       <stop offset="100%" stop-color="#10B981" />
     </linearGradient>
 
-    <!-- Triangle Plane Wash -->
     <linearGradient id="planeFill" x1="0%" y1="50%" x2="100%" y2="50%">
-      <stop offset="0%" stop-color="rgba(0, 242, 254, 0.05)" />
-      <stop offset="45%" stop-color="rgba(99, 102, 241, 0.1)" />
-      <stop offset="100%" stop-color="rgba(244, 63, 94, 0.2)" />
+      <stop offset="0%" stop-color="rgba(0, 242, 254, 0.06)" />
+      <stop offset="50%" stop-color="rgba(99, 102, 241, 0.12)" />
+      <stop offset="100%" stop-color="rgba(244, 63, 94, 0.22)" />
     </linearGradient>
 
-    <!-- Vertex Node Radials -->
     <radialGradient id="v1Aura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.95" />
-      <stop offset="45%" stop-color="#0284C7" stop-opacity="0.4" />
+      <stop offset="0%" stop-color="#00F2FE" stop-opacity="1" />
+      <stop offset="45%" stop-color="#0284C7" stop-opacity="0.45" />
       <stop offset="100%" stop-color="#00F2FE" stop-opacity="0" />
     </radialGradient>
 
     <radialGradient id="v2Aura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.98" />
-      <stop offset="45%" stop-color="#BE123C" stop-opacity="0.45" />
+      <stop offset="0%" stop-color="#F43F5E" stop-opacity="1" />
+      <stop offset="45%" stop-color="#BE123C" stop-opacity="0.5" />
       <stop offset="100%" stop-color="#F43F5E" stop-opacity="0" />
     </radialGradient>
 
     <radialGradient id="v3Aura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#10B981" stop-opacity="0.95" />
-      <stop offset="45%" stop-color="#047857" stop-opacity="0.4" />
+      <stop offset="0%" stop-color="#10B981" stop-opacity="1" />
+      <stop offset="45%" stop-color="#047857" stop-opacity="0.45" />
       <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Ambient Lighting Blooms in Canvas -->
     <radialGradient id="ambientCyan" cx="38%" cy="45%" r="35%">
-      <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.14" />
+      <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.16" />
       <stop offset="65%" stop-color="#0284C7" stop-opacity="0.02" />
       <stop offset="100%" stop-color="#000000" stop-opacity="0" />
     </radialGradient>
 
     <radialGradient id="ambientViolet" cx="66%" cy="42%" r="38%">
-      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.16" />
-      <stop offset="55%" stop-color="#DB2777" stop-opacity="0.05" />
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.18" />
+      <stop offset="55%" stop-color="#DB2777" stop-opacity="0.06" />
       <stop offset="100%" stop-color="#000000" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Dot Pattern -->
     <pattern id="matrixDots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.1" fill="rgba(255, 255, 255, 0.05)" />
     </pattern>
 
-    <!-- Filters -->
-    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="softGlow" x="-25%" y="-25%" width="150%" height="150%">
       <feGaussianBlur stdDeviation="6" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
@@ -98,7 +94,7 @@
       </feMerge>
     </filter>
 
-    <filter id="heavyGlow" x="-40%" y="-40%" width="180%" height="180%">
+    <filter id="heavyGlow" x="-45%" y="-45%" width="190%" height="190%">
       <feGaussianBlur stdDeviation="15" result="blur1" />
       <feGaussianBlur stdDeviation="6" result="blur2" />
       <feMerge>
@@ -119,78 +115,292 @@
       <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000000" flood-opacity="0.8" />
     </filter>
 
-    <style>
+    <style><![CDATA[
       .font-mono {
         font-family: 'JetBrains Mono', 'SF Mono', Consolas, Menlo, monospace;
       }
       .font-sans {
         font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
       }
-      @keyframes radarSweep {
-        0% { r: 14px; opacity: 0.85; }
-        100% { r: 28px; opacity: 0; }
+
+      /* 1. DOTS APPEAR & EMIT SIGNALS */
+      @keyframes sonarRingV1 {
+        0%, 5% { r: 6px; opacity: 0; stroke-width: 2.5px; }
+        8% { r: 8px; opacity: 1; stroke-width: 2px; }
+        22% { r: 28px; opacity: 0; stroke-width: 0.8px; }
+        100% { opacity: 0; }
       }
-      @keyframes pulseGlow {
-        0%, 100% { opacity: 0.7; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.05); }
+
+      @keyframes sonarRingV3 {
+        0%, 7% { r: 6px; opacity: 0; stroke-width: 2.5px; }
+        10% { r: 8px; opacity: 1; stroke-width: 2px; }
+        24% { r: 28px; opacity: 0; stroke-width: 0.8px; }
+        100% { opacity: 0; }
       }
-      .anim-radar {
-        animation: radarSweep 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+
+      /* 2. THE LINES ACTIVELY DRAW FROM THE DOTS TO MEET AT V2 */
+      @keyframes connectTopEdge {
+        0%, 10% {
+          stroke-dashoffset: 125;
+          opacity: 0.2;
+        }
+        14% {
+          opacity: 1;
+        }
+        38%, 84% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        92%, 100% {
+          stroke-dashoffset: 125;
+          opacity: 0.15;
+        }
       }
-      .anim-pulse {
-        animation: pulseGlow 3.5s ease-in-out infinite;
+
+      @keyframes connectBottomEdge {
+        0%, 10% {
+          stroke-dashoffset: 125;
+          opacity: 0.2;
+        }
+        14% {
+          opacity: 1;
+        }
+        38%, 84% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        92%, 100% {
+          stroke-dashoffset: 125;
+          opacity: 0.15;
+        }
+      }
+
+      @keyframes connectChord {
+        0%, 15% {
+          stroke-dashoffset: 110;
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.8;
+        }
+        40%, 84% {
+          stroke-dashoffset: 0;
+          opacity: 0.8;
+        }
+        92%, 100% {
+          stroke-dashoffset: 110;
+          opacity: 0;
+        }
+      }
+
+      /* 3. APEX CONNECTION IMPACT FLASH */
+      @keyframes apexImpactWave {
+        0%, 36% {
+          r: 6px;
+          opacity: 0;
+          stroke-width: 3.5px;
+        }
+        39% {
+          r: 9px;
+          opacity: 1;
+          stroke-width: 3px;
+        }
+        56% {
+          r: 34px;
+          opacity: 0;
+          stroke-width: 0.8px;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes apexCoreFlash {
+        0%, 36% {
+          transform: scale(1);
+          fill: #F43F5E;
+        }
+        39% {
+          transform: scale(1.35);
+          fill: #FFFFFF;
+        }
+        46% {
+          transform: scale(1);
+          fill: #F43F5E;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* 4. TRIANGLE FACET ILLUMINATION UPON CONNECTION */
+      @keyframes facetLightUp {
+        0%, 36% {
+          opacity: 0;
+        }
+        40%, 82% {
+          opacity: 1;
+        }
+        92%, 100% {
+          opacity: 0;
+        }
+      }
+
+      /* 5. TRAVELING ENERGY PHOTONS RIDING THE DRAWING LINES */
+      @keyframes travelingPhotonTop {
+        0%, 10% {
+          stroke-dashoffset: 130;
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        38% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        40%, 100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes travelingPhotonBot {
+        0%, 10% {
+          stroke-dashoffset: 130;
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        38% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        40%, 100% {
+          opacity: 0;
+        }
+      }
+
+      /* 6. CONTINUOUS DATA STREAM AFTER CONNECTION */
+      @keyframes continuousStream {
+        0% {
+          stroke-dashoffset: 40;
+        }
+        100% {
+          stroke-dashoffset: -40;
+        }
+      }
+
+      /* 7. FORMULA BADGE POP UPON CONNECTION */
+      @keyframes formulaBadgePop {
+        0%, 36% {
+          opacity: 0.35;
+          transform: translateY(0);
+        }
+        40%, 82% {
+          opacity: 1;
+          transform: translateY(-2px);
+        }
+        92%, 100% {
+          opacity: 0.35;
+          transform: translateY(0);
+        }
+      }
+
+      /* 8. ACTIVE STATUS BLINKING DOT IN SCREEN HEADER */
+      @keyframes statusBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      /* Class associations */
+      .anim-sonar-v1 {
+        animation: sonarRingV1 4.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+        transform-origin: 0 0;
+      }
+      .anim-sonar-v3 {
+        animation: sonarRingV3 4.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+        transform-origin: 0 0;
+      }
+      .anim-connect-top {
+        stroke-dasharray: 125;
+        animation: connectTopEdge 4.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-connect-bot {
+        stroke-dasharray: 125;
+        animation: connectBottomEdge 4.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-connect-chord {
+        stroke-dasharray: 110;
+        animation: connectChord 4.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-apex-wave {
+        animation: apexImpactWave 4.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+        transform-origin: 0 0;
+      }
+      .anim-apex-core {
+        animation: apexCoreFlash 4.8s ease-out infinite;
+        transform-origin: 0 0;
+      }
+      .anim-facet {
+        animation: facetLightUp 4.8s ease-in-out infinite;
+      }
+      .anim-photon-top {
+        stroke-dasharray: 16 125;
+        animation: travelingPhotonTop 4.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-photon-bot {
+        stroke-dasharray: 16 125;
+        animation: travelingPhotonBot 4.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      }
+      .anim-stream {
+        stroke-dasharray: 6 18;
+        animation: continuousStream 1.2s linear infinite;
+      }
+      .anim-formula {
+        animation: formulaBadgePop 4.8s ease-in-out infinite;
         transform-origin: center;
       }
-    </style>
+      .anim-status {
+        animation: statusBlink 2.4s ease-in-out infinite;
+      }
+    ]]></style>
   </defs>
 
-  <!-- SCREEN CHASSIS -->
   <g filter="url(#dropShadow)">
-    <!-- Main Screen Body -->
     <rect x="25" y="20" width="1150" height="460" rx="22" ry="22" fill="url(#screenBg)" stroke="url(#screenBorder)" stroke-width="1.5" />
-    
-    <!-- Matrix Grid & Ambient Blooms -->
     <rect x="26" y="21" width="1148" height="458" rx="21" ry="21" fill="url(#matrixDots)" />
     <rect x="26" y="21" width="1148" height="458" rx="21" ry="21" fill="url(#ambientCyan)" />
     <rect x="26" y="21" width="1148" height="458" rx="21" ry="21" fill="url(#ambientViolet)" />
 
-    <!-- TOP CONTROL BAR -->
     <g id="screen-bar">
-      <!-- Title bar header surface -->
       <path d="M 25 42 A 22 22 0 0 1 47 20 L 1153 20 A 22 22 0 0 1 1175 42 L 1175 66 L 25 66 Z" fill="rgba(255, 255, 255, 0.02)" />
-      
-      <!-- Traffic lights -->
       <circle cx="56" cy="43" r="5" fill="#FF5F56" />
       <circle cx="74" cy="43" r="5" fill="#FFBD2E" />
       <circle cx="92" cy="43" r="5" fill="#27C93F" />
 
-      <!-- Screen Title Tab -->
       <g transform="translate(122, 43)">
         <rect x="0" y="-12" width="295" height="24" rx="6" ry="6" fill="rgba(255, 255, 255, 0.035)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
         <circle cx="14" cy="0" r="3" fill="#00F2FE" />
         <text x="26" y="4" fill="#94A3B8" font-size="11" font-weight="600" class="font-mono" letter-spacing="0.04em">sheldon // shared-agent-graph</text>
       </g>
 
-      <!-- Engine Live Badge -->
       <g transform="translate(976, 43)">
         <rect x="0" y="-12" width="168" height="24" rx="12" ry="12" fill="rgba(16, 185, 129, 0.09)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="1" />
-        <circle cx="16" cy="0" r="3.5" fill="#10B981" />
+        <circle cx="16" cy="0" r="3.5" fill="#10B981" class="anim-status" />
         <text x="28" y="4" fill="#34D399" font-size="10.5" font-weight="700" class="font-mono" letter-spacing="0.06em">FALKORDB ENGINE</text>
       </g>
 
-      <!-- Divider Hairline with Glowing Gradient -->
       <line x1="25" y1="66" x2="1175" y2="66" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" />
       <line x1="420" y1="66" x2="780" y2="66" stroke="url(#headerAccent)" stroke-width="1.5" />
     </g>
 
-    <!-- FAINT GRAPH CONSTELLATION NODES IN BACKGROUND (Repositioned to not touch title) -->
     <g opacity="0.25" class="font-mono">
       <line x1="90" y1="125" x2="170" y2="95" stroke="#334155" stroke-width="1" stroke-dasharray="3 3" />
       <line x1="170" y1="95" x2="235" y2="120" stroke="#334155" stroke-width="1" />
       <line x1="1040" y1="145" x2="1115" y2="115" stroke="#334155" stroke-width="1" stroke-dasharray="3 3" />
       <line x1="1040" y1="145" x2="1090" y2="215" stroke="#334155" stroke-width="1" />
 
-      <!-- Left graph nodes -->
       <circle cx="90" cy="125" r="3" fill="#1E293B" stroke="#475569" stroke-width="1" />
       <text x="60" y="142" fill="#475569" font-size="8.5">Incident</text>
 
@@ -200,7 +410,6 @@
       <circle cx="235" cy="120" r="3" fill="#1E293B" stroke="#475569" stroke-width="1" />
       <text x="245" y="123" fill="#475569" font-size="8.5">Evidence(E-41)</text>
 
-      <!-- Right graph nodes -->
       <circle cx="1040" cy="145" r="3" fill="#1E293B" stroke="#475569" stroke-width="1" />
       <text x="980" y="149" fill="#475569" font-size="8.5">Lease(Task)</text>
 
@@ -211,179 +420,136 @@
       <text x="1100" y="219" fill="#475569" font-size="8.5">Coordination</text>
     </g>
 
-    <!-- =========================================================================
-         CENTERPIECE: "SHELDON>" (THE PROMPT FORMED BY JOINING THE 3 VERTICES)
-         ========================================================================= -->
     <g id="brand-centerpiece">
-
-      <!-- Text ambient backlight -->
       <path d="M 279.83 247.12 Q 271.20 247.12 264.76 244.09 Q 258.32 241.06 254.78 235.53 Q 251.27 229.99 251.27 222.48 L 267.61 222.48 Q 267.61 227.06 270.92 229.81 Q 274.23 232.56 279.83 232.56 Q 285.31 232.56 288.38 229.94 Q 291.47 227.29 291.47 222.94 Q 291.47 219.45 289.45 216.72 Q 287.44 213.97 283.52 213.06 L 273.55 210.72 Q 263.92 208.48 258.27 202.04 Q 252.62 195.60 252.62 186.64 Q 252.62 175.67 259.72 169.40 Q 266.82 163.12 279.14 163.12 Q 291.47 163.12 298.75 169.45 Q 306.02 175.77 306.02 186.53 L 289.68 186.53 Q 289.68 182.26 286.88 179.87 Q 284.08 177.45 279.14 177.45 Q 274.33 177.45 271.64 179.81 Q 268.96 182.16 268.96 186.08 Q 268.96 192.47 276.69 194.25 L 286.99 196.62 Q 296.63 198.73 302.28 205.85 Q 307.93 212.96 307.93 222.94 Q 307.93 230.22 304.52 235.71 Q 301.11 241.19 294.77 244.16 Q 288.45 247.12 279.83 247.12 Z M 320.59 246.00 L 320.59 164.24 L 337.38 164.24 L 337.38 196.06 L 356.22 196.06 L 356.22 164.24 L 373.01 164.24 L 373.01 246.00 L 356.22 246.00 L 356.22 211.18 L 337.38 211.18 L 337.38 246.00 L 320.59 246.00 Z M 389.36 246.00 L 389.36 164.24 L 439.76 164.24 L 439.76 178.80 L 405.83 178.80 L 405.83 197.18 L 435.84 197.18 L 435.84 211.05 L 405.83 211.05 L 405.83 231.44 L 439.76 231.44 L 439.76 246.00 L 389.36 246.00 Z M 460.48 246.00 L 460.48 164.24 L 477.28 164.24 L 477.28 230.88 L 510.32 230.88 L 510.32 246.00 L 460.48 246.00 Z M 521.85 246.00 L 521.85 164.24 L 548.40 164.24 Q 556.90 164.24 563.24 167.50 Q 569.58 170.73 573.09 176.61 Q 576.63 182.49 576.63 190.45 L 576.63 219.68 Q 576.63 227.52 573.09 233.45 Q 569.58 239.38 563.24 242.69 Q 556.90 246.00 548.40 246.00 L 521.85 246.00 Z M 538.65 230.88 L 548.40 230.88 Q 553.44 230.88 556.62 227.75 Q 559.83 224.62 559.83 219.68 L 559.83 190.45 Q 559.83 185.52 556.62 182.44 Q 553.44 179.36 548.40 179.36 L 538.65 179.36 L 538.65 230.88 Z M 615.60 247.12 Q 603.28 247.12 596.00 240.17 Q 588.72 233.22 588.72 221.36 L 588.72 188.88 Q 588.72 176.89 596.00 170.01 Q 603.28 163.12 615.60 163.12 Q 627.92 163.12 635.20 170.01 Q 642.48 176.89 642.48 188.88 L 642.48 221.36 Q 642.48 233.22 635.20 240.17 Q 627.92 247.12 615.60 247.12 Z M 615.60 232.56 Q 625.68 232.56 625.68 222.48 L 625.68 187.76 Q 625.68 177.68 615.60 177.68 Q 605.52 177.68 605.52 187.76 L 605.52 222.48 Q 605.52 232.56 615.60 232.56 Z M 655.92 246.00 L 655.92 164.24 L 675.52 164.24 L 696.70 227.52 Q 696.35 223.37 695.89 217.95 Q 695.45 212.50 695.17 207.08 Q 694.89 201.66 694.89 197.84 L 694.89 164.24 L 709.68 164.24 L 709.68 246.00 L 690.08 246.00 L 669.13 182.72 Q 669.47 186.31 669.80 191.24 Q 670.15 196.16 670.43 201.20 Q 670.71 206.24 670.71 210.16 L 670.71 246.00 L 655.92 246.00 Z" fill="#0284C7" opacity="0.32" filter="url(#textBacklight)" />
-
-      <!-- 1. "SHELDON" WORDMARK (Vector Path for 100% Deterministic Precision) -->
-      <!-- Shadow Underlay -->
       <path d="M 279.83 247.12 Q 271.20 247.12 264.76 244.09 Q 258.32 241.06 254.78 235.53 Q 251.27 229.99 251.27 222.48 L 267.61 222.48 Q 267.61 227.06 270.92 229.81 Q 274.23 232.56 279.83 232.56 Q 285.31 232.56 288.38 229.94 Q 291.47 227.29 291.47 222.94 Q 291.47 219.45 289.45 216.72 Q 287.44 213.97 283.52 213.06 L 273.55 210.72 Q 263.92 208.48 258.27 202.04 Q 252.62 195.60 252.62 186.64 Q 252.62 175.67 259.72 169.40 Q 266.82 163.12 279.14 163.12 Q 291.47 163.12 298.75 169.45 Q 306.02 175.77 306.02 186.53 L 289.68 186.53 Q 289.68 182.26 286.88 179.87 Q 284.08 177.45 279.14 177.45 Q 274.33 177.45 271.64 179.81 Q 268.96 182.16 268.96 186.08 Q 268.96 192.47 276.69 194.25 L 286.99 196.62 Q 296.63 198.73 302.28 205.85 Q 307.93 212.96 307.93 222.94 Q 307.93 230.22 304.52 235.71 Q 301.11 241.19 294.77 244.16 Q 288.45 247.12 279.83 247.12 Z M 320.59 246.00 L 320.59 164.24 L 337.38 164.24 L 337.38 196.06 L 356.22 196.06 L 356.22 164.24 L 373.01 164.24 L 373.01 246.00 L 356.22 246.00 L 356.22 211.18 L 337.38 211.18 L 337.38 246.00 L 320.59 246.00 Z M 389.36 246.00 L 389.36 164.24 L 439.76 164.24 L 439.76 178.80 L 405.83 178.80 L 405.83 197.18 L 435.84 197.18 L 435.84 211.05 L 405.83 211.05 L 405.83 231.44 L 439.76 231.44 L 439.76 246.00 L 389.36 246.00 Z M 460.48 246.00 L 460.48 164.24 L 477.28 164.24 L 477.28 230.88 L 510.32 230.88 L 510.32 246.00 L 460.48 246.00 Z M 521.85 246.00 L 521.85 164.24 L 548.40 164.24 Q 556.90 164.24 563.24 167.50 Q 569.58 170.73 573.09 176.61 Q 576.63 182.49 576.63 190.45 L 576.63 219.68 Q 576.63 227.52 573.09 233.45 Q 569.58 239.38 563.24 242.69 Q 556.90 246.00 548.40 246.00 L 521.85 246.00 Z M 538.65 230.88 L 548.40 230.88 Q 553.44 230.88 556.62 227.75 Q 559.83 224.62 559.83 219.68 L 559.83 190.45 Q 559.83 185.52 556.62 182.44 Q 553.44 179.36 548.40 179.36 L 538.65 179.36 L 538.65 230.88 Z M 615.60 247.12 Q 603.28 247.12 596.00 240.17 Q 588.72 233.22 588.72 221.36 L 588.72 188.88 Q 588.72 176.89 596.00 170.01 Q 603.28 163.12 615.60 163.12 Q 627.92 163.12 635.20 170.01 Q 642.48 176.89 642.48 188.88 L 642.48 221.36 Q 642.48 233.22 635.20 240.17 Q 627.92 247.12 615.60 247.12 Z M 615.60 232.56 Q 625.68 232.56 625.68 222.48 L 625.68 187.76 Q 625.68 177.68 615.60 177.68 Q 605.52 177.68 605.52 187.76 L 605.52 222.48 Q 605.52 232.56 615.60 232.56 Z M 655.92 246.00 L 655.92 164.24 L 675.52 164.24 L 696.70 227.52 Q 696.35 223.37 695.89 217.95 Q 695.45 212.50 695.17 207.08 Q 694.89 201.66 694.89 197.84 L 694.89 164.24 L 709.68 164.24 L 709.68 246.00 L 690.08 246.00 L 669.13 182.72 Q 669.47 186.31 669.80 191.24 Q 670.15 196.16 670.43 201.20 Q 670.71 206.24 670.71 210.16 L 670.71 246.00 L 655.92 246.00 Z" fill="#000000" opacity="0.75" filter="url(#softGlow)" />
-      <!-- Metallic Crisp Letters -->
       <path d="M 279.83 247.12 Q 271.20 247.12 264.76 244.09 Q 258.32 241.06 254.78 235.53 Q 251.27 229.99 251.27 222.48 L 267.61 222.48 Q 267.61 227.06 270.92 229.81 Q 274.23 232.56 279.83 232.56 Q 285.31 232.56 288.38 229.94 Q 291.47 227.29 291.47 222.94 Q 291.47 219.45 289.45 216.72 Q 287.44 213.97 283.52 213.06 L 273.55 210.72 Q 263.92 208.48 258.27 202.04 Q 252.62 195.60 252.62 186.64 Q 252.62 175.67 259.72 169.40 Q 266.82 163.12 279.14 163.12 Q 291.47 163.12 298.75 169.45 Q 306.02 175.77 306.02 186.53 L 289.68 186.53 Q 289.68 182.26 286.88 179.87 Q 284.08 177.45 279.14 177.45 Q 274.33 177.45 271.64 179.81 Q 268.96 182.16 268.96 186.08 Q 268.96 192.47 276.69 194.25 L 286.99 196.62 Q 296.63 198.73 302.28 205.85 Q 307.93 212.96 307.93 222.94 Q 307.93 230.22 304.52 235.71 Q 301.11 241.19 294.77 244.16 Q 288.45 247.12 279.83 247.12 Z M 320.59 246.00 L 320.59 164.24 L 337.38 164.24 L 337.38 196.06 L 356.22 196.06 L 356.22 164.24 L 373.01 164.24 L 373.01 246.00 L 356.22 246.00 L 356.22 211.18 L 337.38 211.18 L 337.38 246.00 L 320.59 246.00 Z M 389.36 246.00 L 389.36 164.24 L 439.76 164.24 L 439.76 178.80 L 405.83 178.80 L 405.83 197.18 L 435.84 197.18 L 435.84 211.05 L 405.83 211.05 L 405.83 231.44 L 439.76 231.44 L 439.76 246.00 L 389.36 246.00 Z M 460.48 246.00 L 460.48 164.24 L 477.28 164.24 L 477.28 230.88 L 510.32 230.88 L 510.32 246.00 L 460.48 246.00 Z M 521.85 246.00 L 521.85 164.24 L 548.40 164.24 Q 556.90 164.24 563.24 167.50 Q 569.58 170.73 573.09 176.61 Q 576.63 182.49 576.63 190.45 L 576.63 219.68 Q 576.63 227.52 573.09 233.45 Q 569.58 239.38 563.24 242.69 Q 556.90 246.00 548.40 246.00 L 521.85 246.00 Z M 538.65 230.88 L 548.40 230.88 Q 553.44 230.88 556.62 227.75 Q 559.83 224.62 559.83 219.68 L 559.83 190.45 Q 559.83 185.52 556.62 182.44 Q 553.44 179.36 548.40 179.36 L 538.65 179.36 L 538.65 230.88 Z M 615.60 247.12 Q 603.28 247.12 596.00 240.17 Q 588.72 233.22 588.72 221.36 L 588.72 188.88 Q 588.72 176.89 596.00 170.01 Q 603.28 163.12 615.60 163.12 Q 627.92 163.12 635.20 170.01 Q 642.48 176.89 642.48 188.88 L 642.48 221.36 Q 642.48 233.22 635.20 240.17 Q 627.92 247.12 615.60 247.12 Z M 615.60 232.56 Q 625.68 232.56 625.68 222.48 L 625.68 187.76 Q 625.68 177.68 615.60 177.68 Q 605.52 177.68 605.52 187.76 L 605.52 222.48 Q 605.52 232.56 615.60 232.56 Z M 655.92 246.00 L 655.92 164.24 L 675.52 164.24 L 696.70 227.52 Q 696.35 223.37 695.89 217.95 Q 695.45 212.50 695.17 207.08 Q 694.89 201.66 694.89 197.84 L 694.89 164.24 L 709.68 164.24 L 709.68 246.00 L 690.08 246.00 L 669.13 182.72 Q 669.47 186.31 669.80 191.24 Q 670.15 196.16 670.43 201.20 Q 670.71 206.24 670.71 210.16 L 670.71 246.00 L 655.92 246.00 Z" fill="url(#sheldonGrad)" />
 
-      <!-- 2. THE ">" CREATED BY JOINING THE THREE VERTICES -->
       <g id="vertex-chevron">
-        
-        <!-- Interior Polygon Facet Wash (Bounded by the 3 vertices) -->
-        <polygon points="742.4125000000001,152 850.4125000000001,204 742.4125000000001,256" fill="url(#planeFill)" />
-
-        <!-- Base Chord Connecting Vertex 1 and Vertex 3 -->
-        <line x1="742.4125000000001" y1="152" x2="742.4125000000001" y2="256" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1.8" stroke-dasharray="3.5 3.5" />
-
-        <!-- Neon Bloom Strokes for Chevron Legs -->
-        <path d="M 742.4125000000001 152 L 850.4125000000001 204 L 742.4125000000001 256" fill="none" stroke="url(#edgeTopGrad)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.25" filter="url(#heavyGlow)" />
-        <path d="M 742.4125000000001 152 L 850.4125000000001 204 L 742.4125000000001 256" fill="none" stroke="url(#edgeTopGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.7" filter="url(#softGlow)" />
-
-        <!-- Crisp Joining Edges: V1 -> V2 and V3 -> V2 -->
-        <!-- Edge 1: V1 (Top) to V2 (Apex) -->
-        <line x1="742.4125000000001" y1="152" x2="850.4125000000001" y2="204" stroke="url(#edgeTopGrad)" stroke-width="5" stroke-linecap="round" />
-        <!-- Edge 2: V2 (Apex) to V3 (Bottom) -->
-        <line x1="850.4125000000001" y1="204" x2="742.4125000000001" y2="256" stroke="url(#edgeBotGrad)" stroke-width="5" stroke-linecap="round" />
-
-        <!-- Specular Center Hairline -->
-        <path d="M 742.4125000000001 152 L 850.4125000000001 204 L 742.4125000000001 256" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.94" />
-
-        <!-- Directional Flow Markers along the joined edges -->
-        <g opacity="0.8">
-          <!-- Flow 1 (midway on top edge) -->
-          <circle cx="796.4125000000001" cy="178.0" r="2.5" fill="#00F2FE" />
-          <!-- Flow 2 (midway on bottom edge) -->
-          <circle cx="796.4125000000001" cy="230.0" r="2.5" fill="#A855F7" />
+        <g opacity="0.12">
+          <line x1="742.41" y1="152.00" x2="850.41" y2="204.00" stroke="#00F2FE" stroke-width="2" stroke-linecap="round" />
+          <line x1="742.41" y1="256.00" x2="850.41" y2="204.00" stroke="#10B981" stroke-width="2" stroke-linecap="round" />
+          <line x1="742.41" y1="152.00" x2="742.41" y2="256.00" stroke="#64748B" stroke-width="1.5" stroke-dasharray="3 3" />
         </g>
 
-        <!-- ===================================================================
-             VERTEX 1 (Top Left Node)
-             =================================================================== -->
-        <g id="vertex-1" transform="translate(742.4125000000001, 152)">
-          <!-- Aura -->
+        <polygon points="742.41,152.00 850.41,204.00 742.41,256.00" fill="url(#planeFill)" class="anim-facet" />
+        <line x1="742.41" y1="152.00" x2="742.41" y2="256.00" stroke="url(#chordGrad)" stroke-width="1.8" stroke-dasharray="3.5 3.5" class="anim-connect-chord" />
+
+        <line x1="742.41" y1="152.00" x2="850.41" y2="204.00" stroke="url(#edgeTopGrad)" stroke-width="18" stroke-linecap="round" filter="url(#heavyGlow)" opacity="0.25" class="anim-connect-top" />
+        <line x1="742.41" y1="256.00" x2="850.41" y2="204.00" stroke="url(#edgeBotGrad)" stroke-width="18" stroke-linecap="round" filter="url(#heavyGlow)" opacity="0.25" class="anim-connect-bot" />
+
+        <line x1="742.41" y1="152.00" x2="850.41" y2="204.00" stroke="url(#edgeTopGrad)" stroke-width="8" stroke-linecap="round" filter="url(#softGlow)" opacity="0.75" class="anim-connect-top" />
+        <line x1="742.41" y1="256.00" x2="850.41" y2="204.00" stroke="url(#edgeBotGrad)" stroke-width="8" stroke-linecap="round" filter="url(#softGlow)" opacity="0.75" class="anim-connect-bot" />
+
+        <line x1="742.41" y1="152.00" x2="850.41" y2="204.00" stroke="url(#edgeTopGrad)" stroke-width="5" stroke-linecap="round" class="anim-connect-top" />
+        <line x1="742.41" y1="256.00" x2="850.41" y2="204.00" stroke="url(#edgeBotGrad)" stroke-width="5" stroke-linecap="round" class="anim-connect-bot" />
+
+        <line x1="742.41" y1="152.00" x2="850.41" y2="204.00" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" opacity="0.95" class="anim-connect-top" />
+        <line x1="742.41" y1="256.00" x2="850.41" y2="204.00" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" opacity="0.95" class="anim-connect-bot" />
+
+        <line x1="742.41" y1="152.00" x2="850.41" y2="204.00" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#softGlow)" class="anim-photon-top" />
+        <line x1="742.41" y1="256.00" x2="850.41" y2="204.00" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#softGlow)" class="anim-photon-bot" />
+
+        <g opacity="0.6">
+          <line x1="742.41" y1="152.00" x2="850.41" y2="204.00" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" class="anim-stream" />
+          <line x1="742.41" y1="256.00" x2="850.41" y2="204.00" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" class="anim-stream" />
+        </g>
+
+        <!-- VERTEX 1 -->
+        <g id="vertex-1" transform="translate(742.41, 152.00)">
+          <circle cx="0" cy="0" r="10" fill="none" stroke="#00F2FE" class="anim-sonar-v1" />
           <circle cx="0" cy="0" r="22" fill="url(#v1Aura)" />
-          <!-- Orbit Reticle -->
-          <circle cx="0" cy="0" r="11" fill="none" stroke="rgba(0, 242, 254, 0.55)" stroke-width="1.2" stroke-dasharray="2.5 2.5" />
+          <circle cx="0" cy="0" r="11" fill="none" stroke="rgba(0, 242, 254, 0.6)" stroke-width="1.2" stroke-dasharray="2.5 2.5" />
           <line x1="-14" y1="0" x2="-8" y2="0" stroke="#00F2FE" stroke-width="1.2" />
           <line x1="8" y1="0" x2="14" y2="0" stroke="#00F2FE" stroke-width="1.2" />
           <line x1="0" y1="-14" x2="0" y2="-8" stroke="#00F2FE" stroke-width="1.2" />
           <line x1="0" y1="8" x2="0" y2="14" stroke="#00F2FE" stroke-width="1.2" />
 
-          <!-- Solid Node -->
           <circle cx="0" cy="0" r="6" fill="#00F2FE" stroke="#FFFFFF" stroke-width="1.8" />
           <circle cx="-1.5" cy="-1.5" r="1.6" fill="#FFFFFF" />
 
-          <!-- Vertex Pill Label (Above) -->
           <g transform="translate(0, -22)">
-            <rect x="-25" y="-8" width="50" height="16" rx="4" ry="4" fill="rgba(9, 12, 20, 0.92)" stroke="rgba(0, 242, 254, 0.5)" stroke-width="1" />
+            <rect x="-25" y="-8" width="50" height="16" rx="4" ry="4" fill="rgba(9, 12, 20, 0.92)" stroke="rgba(0, 242, 254, 0.55)" stroke-width="1" />
             <text x="0" y="3.5" fill="#38BDF8" font-size="9" font-weight="700" class="font-mono" text-anchor="middle">v₁:CLAIM</text>
           </g>
         </g>
 
-        <!-- ===================================================================
-             VERTEX 2 (Apex / Tip Node)
-             =================================================================== -->
-        <g id="vertex-2" transform="translate(850.4125000000001, 204)">
-          <!-- Animated Radar Beacon -->
-          <circle cx="0" cy="0" r="16" class="anim-radar" fill="none" stroke="#F43F5E" stroke-width="1.5" />
-          <!-- Aura -->
+        <!-- VERTEX 2 -->
+        <g id="vertex-2" transform="translate(850.41, 204.00)">
+          <circle cx="0" cy="0" r="12" fill="none" stroke="#F43F5E" class="anim-apex-wave" />
           <circle cx="0" cy="0" r="26" fill="url(#v2Aura)" />
-          <!-- Orbit Reticle -->
-          <circle cx="0" cy="0" r="12" fill="none" stroke="rgba(244, 63, 94, 0.65)" stroke-width="1.2" />
+          <circle cx="0" cy="0" r="12" fill="none" stroke="rgba(244, 63, 94, 0.7)" stroke-width="1.2" />
           <line x1="-16" y1="0" x2="-9" y2="0" stroke="#F43F5E" stroke-width="1.2" />
           <line x1="9" y1="0" x2="16" y2="0" stroke="#F43F5E" stroke-width="1.2" />
           <line x1="0" y1="-16" x2="0" y2="-9" stroke="#F43F5E" stroke-width="1.2" />
           <line x1="0" y1="9" x2="0" y2="16" stroke="#F43F5E" stroke-width="1.2" />
 
-          <!-- Solid Apex Node -->
-          <circle cx="0" cy="0" r="7" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2" />
+          <circle cx="0" cy="0" r="7" fill="#F43F5E" stroke="#FFFFFF" stroke-width="2" class="anim-apex-core" />
           <circle cx="-1.8" cy="-1.8" r="1.8" fill="#FFFFFF" />
 
-          <!-- Apex Pill Label (Right) -->
           <g transform="translate(22, 0)">
-            <rect x="0" y="-10" width="76" height="20" rx="4" ry="4" fill="rgba(9, 12, 20, 0.92)" stroke="rgba(244, 63, 94, 0.6)" stroke-width="1" />
+            <rect x="0" y="-10" width="76" height="20" rx="4" ry="4" fill="rgba(9, 12, 20, 0.92)" stroke="rgba(244, 63, 94, 0.65)" stroke-width="1" />
             <text x="38" y="3.5" fill="#FB7185" font-size="9" font-weight="700" class="font-mono" text-anchor="middle">v₂:ACTION &gt;</text>
           </g>
         </g>
 
-        <!-- ===================================================================
-             VERTEX 3 (Bottom Left Node)
-             =================================================================== -->
-        <g id="vertex-3" transform="translate(742.4125000000001, 256)">
-          <!-- Aura -->
+        <!-- VERTEX 3 -->
+        <g id="vertex-3" transform="translate(742.41, 256.00)">
+          <circle cx="0" cy="0" r="10" fill="none" stroke="#10B981" class="anim-sonar-v3" />
           <circle cx="0" cy="0" r="22" fill="url(#v3Aura)" />
-          <!-- Orbit Reticle -->
-          <circle cx="0" cy="0" r="11" fill="none" stroke="rgba(16, 185, 129, 0.55)" stroke-width="1.2" stroke-dasharray="2.5 2.5" />
+          <circle cx="0" cy="0" r="11" fill="none" stroke="rgba(16, 185, 129, 0.6)" stroke-width="1.2" stroke-dasharray="2.5 2.5" />
           <line x1="-14" y1="0" x2="-8" y2="0" stroke="#10B981" stroke-width="1.2" />
           <line x1="8" y1="0" x2="14" y2="0" stroke="#10B981" stroke-width="1.2" />
           <line x1="0" y1="-14" x2="0" y2="-8" stroke="#10B981" stroke-width="1.2" />
           <line x1="0" y1="8" x2="0" y2="14" stroke="#10B981" stroke-width="1.2" />
 
-          <!-- Solid Node -->
           <circle cx="0" cy="0" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="1.8" />
           <circle cx="-1.5" cy="-1.5" r="1.6" fill="#FFFFFF" />
 
-          <!-- Vertex Pill Label (Below) -->
           <g transform="translate(0, 22)">
-            <rect x="-29" y="-8" width="58" height="16" rx="4" ry="4" fill="rgba(9, 12, 20, 0.92)" stroke="rgba(16, 185, 129, 0.5)" stroke-width="1" />
+            <rect x="-29" y="-8" width="58" height="16" rx="4" ry="4" fill="rgba(9, 12, 20, 0.92)" stroke="rgba(16, 185, 129, 0.55)" stroke-width="1" />
             <text x="0" y="3.5" fill="#34D399" font-size="9" font-weight="700" class="font-mono" text-anchor="middle">v₃:EVIDENCE</text>
           </g>
         </g>
 
-        <!-- Construction Formula Subscript Tag directly below chevron -->
-        <g transform="translate(804.4125000000001, 285)">
-          <rect x="-4" y="-8" width="114" height="16" rx="4" ry="4" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(148, 163, 184, 0.2)" stroke-width="1" />
-          <text x="53" y="3.5" fill="rgba(148, 163, 184, 0.85)" font-size="8.5" class="font-mono" text-anchor="middle">
+        <g transform="translate(804.41, 285)" class="anim-formula">
+          <rect x="-4" y="-8" width="114" height="16" rx="4" ry="4" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1" />
+          <text x="53" y="3.5" fill="#38BDF8" font-size="8.5" font-weight="600" class="font-mono" text-anchor="middle">
             join(v₁, v₂, v₃) ⇒ &gt;
           </text>
         </g>
+      </g>
+    </g>
 
-      </g> <!-- end vertex-chevron -->
-
-    </g> <!-- end brand-centerpiece -->
-
-    <!-- =========================================================================
-         EDITORIAL SUBTITLES & VALUE PROPOSITION
-         ========================================================================= -->
     <g id="brand-subtitles" transform="translate(600, 322)" text-anchor="middle">
-      <!-- Section Tagline -->
       <text x="0" y="0" fill="#E2E8F0" font-size="14" font-weight="700" class="font-sans" letter-spacing="0.26em">
         ONE REPO  •  MANY AGENTS  •  ONE MEMORY
       </text>
-
-      <!-- Description -->
       <text x="0" y="24" fill="#94A3B8" font-size="12" class="font-sans" letter-spacing="0.02em">
         Shared FalkorDB Property Graph for Autonomous Coding Agents &amp; Trust Enforcement
       </text>
     </g>
 
-    <!-- =========================================================================
-         FEATURE PILLS / SYSTEM BADGES (Centered Row)
-         ========================================================================= -->
     <g id="feature-pills" transform="translate(600, 386)">
-      <!-- 4 Pills centered: total width ~ 780px => start at -390 -->
       <g transform="translate(-395, 0)">
-        <!-- Pill 1: Lease Coordination -->
         <g transform="translate(0, 0)">
           <rect x="0" y="0" width="180" height="26" rx="13" ry="13" fill="rgba(255, 255, 255, 0.035)" stroke="rgba(255, 255, 255, 0.09)" stroke-width="1" />
           <circle cx="15" cy="13" r="3" fill="#00F2FE" />
           <text x="28" y="16.5" fill="#CBD5E1" font-size="10" font-weight="600" class="font-mono">LEASE COORDINATION</text>
         </g>
 
-        <!-- Pill 2: Evidence Gated -->
         <g transform="translate(195, 0)">
           <rect x="0" y="0" width="185" height="26" rx="13" ry="13" fill="rgba(255, 255, 255, 0.035)" stroke="rgba(255, 255, 255, 0.09)" stroke-width="1" />
           <circle cx="15" cy="13" r="3" fill="#8B5CF6" />
           <text x="28" y="16.5" fill="#CBD5E1" font-size="10" font-weight="600" class="font-mono">EVIDENCE GATES</text>
         </g>
 
-        <!-- Pill 3: Retry Suppression -->
         <g transform="translate(395, 0)">
           <rect x="0" y="0" width="185" height="26" rx="13" ry="13" fill="rgba(255, 255, 255, 0.035)" stroke="rgba(255, 255, 255, 0.09)" stroke-width="1" />
           <circle cx="15" cy="13" r="3" fill="#F43F5E" />
           <text x="28" y="16.5" fill="#CBD5E1" font-size="10" font-weight="600" class="font-mono">RETRY SUPPRESSION</text>
         </g>
 
-        <!-- Pill 4: FalkorDB Graph -->
         <g transform="translate(595, 0)">
           <rect x="0" y="0" width="195" height="26" rx="13" ry="13" fill="rgba(16, 185, 129, 0.08)" stroke="rgba(16, 185, 129, 0.28)" stroke-width="1" />
           <circle cx="15" cy="13" r="3" fill="#10B981" />
@@ -392,19 +558,16 @@
       </g>
     </g>
 
-    <!-- FOOTER TECHNICAL METADATA (Left & Right) -->
     <g class="font-mono" font-size="9" fill="#475569" opacity="0.6">
       <text x="56" y="442">GRAPH_TRACK // 02: AGENT MEMORY &amp; COORDINATION</text>
       <text x="1144" y="442" text-anchor="end">WEMAKEDEVS × FALKORDB HACKATHON</text>
     </g>
 
-    <!-- Sleek Corner Precision Brackets -->
     <g stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5" fill="none">
       <path d="M 38 48 L 38 36 L 50 36" />
       <path d="M 1162 48 L 1162 36 L 1150 36" />
       <path d="M 38 432 L 38 444 L 50 444" />
       <path d="M 1162 432 L 1162 444 L 1150 444" />
     </g>
-
   </g>
 </svg>
