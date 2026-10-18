@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Repo, Many Agents, One Memory: Making Shared Agent Memory Trustworthy</title>
+  <meta name="description" content="One Repo, Many Agents, One Memory: Making Shared Agent Memory Trustworthy">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+  <!-- Floating Left Index that appears on hover -->
+  <aside class="hover-index-rail" id="index-rail">
+    <div class="index-trigger">
+      <span class="index-icon">&equiv;</span>
+      <span class="index-label">INDEX</span>
+    </div>
+    <nav class="index-menu">
+      <div class="index-menu-title">TABLE OF CONTENTS</div>
+      <a href="#section-01" class="index-link" data-target="section-01">
+        <span class="index-num">01</span>
+        <span class="index-text">Introduction & Problem</span>
+      </a>
+      <a href="#section-02" class="index-link" data-target="section-02">
+        <span class="index-num">02</span>
+        <span class="index-text">The Shared Notebook & The Catch</span>
+      </a>
+      <a href="#section-03" class="index-link" data-target="section-03">
+        <span class="index-num">03</span>
+        <span class="index-text">Three Enforcement Mechanisms</span>
+      </a>
+      <a href="#section-04" class="index-link" data-target="section-04">
+        <span class="index-num">04</span>
+        <span class="index-text">Evaluation & Benchmarks</span>
+      </a>
+      <a href="#section-05" class="index-link" data-target="section-05">
+        <span class="index-num">05</span>
+        <span class="index-text">Synthesis & Reproduction</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Top Navigation with Blog Name -->
+  <nav class="nav-bar" id="main-nav">
+    <div class="nav-blog-title">
+      <span>ONE REPO, MANY AGENTS, ONE MEMORY: MAKING SHARED AGENT MEMORY TRUSTWORTHY</span>
+    </div>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      <span>SHELDON</span>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       SURFACE 1: PLASTER WHITE (#ffffff)
+       Section 01: Introduction & Shared Repo Graph
+       ========================================================================= -->
+  <section class="surface-light" id="section-01">
+    <div class="container">
+      <span class="section-label">01 / INTRODUCTION & THE REPO PROBLEM</span>
+      
+      <div class="content-column">
+        <h1 class="hero-title">One Repo, Many Agents, One Memory: Making Shared Agent Memory Trustworthy</h1>
+        <p class="hero-subtitle">Building Sheldon for Graph Hacks (WeMakeDevs × FalkorDB), Track 02: Agent Memory and Coordination</p>
+        
+        <p>
+          Picture a normal Tuesday on a repo that uses coding agents. One agent is working on a checkout bug in Claude Code. A cheaper model has picked up the test-writing task. The first agent spawns a subagent to look into a flaky fixture. Halfway through the afternoon its context is compacted, and it carries on with a much shorter memory of the morning. Tomorrow, a fresh session will start with none of it.
+        </p>
+
+        <p>
+          Each of those transitions is a place where knowledge falls on the floor. <a href="https://x.com/arpit_bhayani/status/2100444191876903215" target="_blank" rel="noopener">@arpit_bhayani</a> described the mechanism well: when one agent hands work to the next, what gets passed along is a summary rather than the reasoning trace. The receiving agent gets the conclusion but not the context that produced it.
+        </p>
+
+        <p>
+          The natural fix is memory that lives outside any single agent's context window. Sheldon is our attempt at that: one shared <a href="https://www.falkordb.com/" target="_blank" rel="noopener">FalkorDB</a> graph per repository, read and written by every agent that works on it. Building it taught us that sharing memory is the easy half. The harder half is making sure what's in it can be trusted.
+        </p>
+      </div>
+
+      <!-- 3D WEBGL ILLUSTRATION 1: The Shared Property Graph -->
+      <div class="illustration-block">
+        <div class="illustration-header">
+          <div class="illustration-title">
+            <span>FalkorDB Shared Repository Property Graph & Active Coding Agents</span>
+          </div>
+        </div>
+
+        <div class="canvas-container" id="hero-graph-canvas">
+          <svg class="canvas-overlay-svg"></svg>
+          <div class="canvas-overlay-html"></div>
+        </div>
+
+        <div class="canvas-sequence-banner">
+          <span class="sequence-focal-label">ENFORCEMENT SEQUENCE:</span>
+          Agent A attempts fix <code>ATT-3</code> for <code>INC-12</code> &rarr; CI Evidence <code>E-41</code> refutes Claim <code>C-7</code> &rarr; Dependent Approval <code>A-3</code> and Task <code>T-9</code> cascade to <code>stale</code> (lease unclaimable) without node deletion. <em>Hover or click any node to inspect properties.</em>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SURFACE 2: CARBON (#111111)
+       Section 02: The Shared Notebook and The Error Distribution Catch
+       ========================================================================= -->
+  <section class="surface-dark" id="section-02">
+    <div class="container">
+      <span class="section-label">02 / THE NOTEBOOK & THE CATCH</span>
+
+      <div class="content-column">
+        <h2 class="section-heading">The shared notebook</h2>
+
+        <p>
+          The metaphor we kept coming back to was a professional kitchen. Agents are the line cooks, working at different stations. A good kitchen runs on a shared picture of the night: who has which station, what was sent back and why, so that when a cook hands over, the next one knows what has been tried.
+        </p>
+
+        <p>
+          In Sheldon that picture is a property graph. Incidents, claims, evidence, approvals, tasks and attempted actions are nodes, and the relationships carry the meaning: this action was an attempted fix for that claim, this approval relies on that claim, this task depends on it. A small coordination layer sits on top.
+        </p>
+
+        <p>
+          <strong>Tasks are claimed with leases.</strong> An agent can take a task only if it is open (or the previous holder's lease has expired), its prerequisite tasks are done, and the claims it depends on haven't been refuted. The claim is a single conditional write, intended to guarantee exactly one winner when agents race for the same task. Heartbeats keep a lease alive while an agent is genuinely working, and an explicit handoff transfers ownership with a note.
+        </p>
+
+        <p>
+          <strong>A new session can resume instead of starting over.</strong> An agent picking up work can ask the graph four things: what has been tried, what failed and which evidence says so, what is currently believed and on what basis, and what is ready to be picked up. That is the reasoning trace Arpit was describing, kept in a form a different agent can query.
+        </p>
+
+        <p>
+          <strong>A small capsule rides along at session start.</strong> Sheldon injects a tight block of context: the do-nots from refuted attempts that touch the current task, and the command that proves the work. It is re-injected after compaction and again when a subagent starts, because context given to the parent thread doesn't reach its children. It is deliberately tiny and evidence-backed, not a repo dump.
+        </p>
+
+        <p>
+          <strong>Every write records who made it.</strong> Claims, evidence, approvals and actions store the model and session that produced them. The motivating case was a Claude Code user's report that a project they only ran on Opus quietly started sessions on Sonnet for about 14 hours, and shipped a data-deleting bug (<a href="https://github.com/anthropics/claude-code/issues/98539" target="_blank" rel="noopener">anthropics/claude-code#98539</a>). It is one user's report, but it made "which model wrote the approvals on this PR?" a question we wanted to answer with one query.
+        </p>
+
+        <h3 class="sub-heading">The catch: shared memory spreads mistakes as easily as knowledge</h3>
+
+        <p>
+          A notebook that every agent writes in also records everyone's wrong turns, and it hands them to the next cook with the same confidence as the right ones.
+        </p>
+
+        <p>
+          Think about what an agent writes down: a hypothesis ("the root cause is the cache TTL"), a fix based on it, a cheerful "done, all tests pass." If any of that is wrong, a shared memory doesn't merely preserve the error. It distributes it. A second agent reads the confident claim and builds an approval on top of it. A third schedules a task that depends on the approval.
+        </p>
+
+        <p>
+          Even the single-agent version of this is familiar. <a href="https://x.com/malladiphani/status/2107056404540608789" target="_blank" rel="noopener">@malladiphani</a> summed it up as "it kept trying the same fix and failing the same way." With several agents and several sessions, the same dead end gets walked into again by someone who never saw the first attempt.
+        </p>
+
+        <blockquote>
+          "A stale graph is worse than no graph, it lies with confidence."
+          <div style="font-size: 15px; margin-top: 8px; font-family: var(--font-new-grotesk); text-transform: uppercase; font-style: normal;">
+            — Guy Korland, FalkorDB (<a href="https://x.com/i/status/2099372201292013619" target="_blank" rel="noopener">reply on X</a>)
+          </div>
+        </blockquote>
+
+        <p>
+          In a shared setting, being stale isn't a hygiene issue. Other agents make decisions on it.
+        </p>
+
+        <p>
+          So the design question became: what would it take for a shared memory to be something agents can rely on? Our answer is that the memory has to be able to refuse things.
+        </p>
+      </div>
+
+      <!-- 3D WEBGL ILLUSTRATION 2: The Error Propagation & Stale Graph -->
+      <div class="illustration-block">
+        <div class="illustration-header">
+          <div class="illustration-title">
+            <span>Simulation: Error Distribution & 3-Hop Stale Cascade</span>
+          </div>
+          <div class="illustration-controls">
+            <button class="btn-minimal prop-step-btn active" data-step="1">1. Faulty Claim</button>
+            <button class="btn-minimal prop-step-btn" data-step="2">2. Contagion</button>
+            <button class="btn-minimal prop-step-btn" data-step="3">3. Reality Check</button>
+            <button class="btn-minimal prop-step-btn" data-step="4">4. Refusal</button>
+          </div>
+        </div>
+
+        <div class="canvas-container" id="prop-sim-canvas">
+          <svg class="canvas-overlay-svg"></svg>
+          <div class="canvas-overlay-html"></div>
+          <div class="canvas-hud" id="prop-hud">
+            <span style="color:#e67e22; font-weight:700;">STEP 1: UNVERIFIED HYPOTHESIS</span><br>
+            Agent A writes <strong>Claim C-7</strong> (<em>"Root cause is cache TTL"</em>). Sits unverified in shared memory.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SURFACE 3: PLASTER WHITE (#ffffff)
+       Section 03: Three Enforcement Mechanisms
+       ========================================================================= -->
+  <section class="surface-light" id="section-03">
+    <div class="container">
+      <span class="section-label">03 / THREE ENFORCEMENT MECHANISMS</span>
+
+      <div class="content-column">
+        <h2 class="section-heading">Three enforcement mechanisms</h2>
+
+        <p>
+          One rule underlies all three: <strong>a model can cite evidence, but it can never create it.</strong> Only trusted producers write evidence: <code>sheldon run</code>, which wraps a real command and records its exit code and commit, and CI webhooks. Agents are consumers.
+        </p>
+
+        <h3 class="sub-heading">The retry block</h3>
+
+        <p>
+          Before an agent edits a file or runs a command, a preflight checks the action's fingerprint (the normalised command plus the files it touches) against the graph. If it matches an attempt that executed evidence has already refuted, the answer is <code>block</code>, with a reason the agent can follow:
+        </p>
+
+        <pre><code>blocked: refuted by E-41
+this edit repeats the cache-TTL fix tried for INC-12; E-41 (CI run) refuted it</code></pre>
+
+        <p>
+          The refutation belongs to the repo, not to whoever made the original attempt. If agent A burned an hour on the TTL fix last week, agent B shouldn't walk into it today. If an agent touches a file from a past incident but takes a genuinely different approach, the answer is only <code>warn</code>. The aim is to stop repeats, not to put files off limits. If the graph is unreachable, commit, push and "done" fail closed, while reads fail open so an outage doesn't freeze the agent.
+        </p>
+
+        <p>
+          The matching is exact on the normalised fingerprint, plus a scoped full-text check against recorded attempts. That precision is also its weakness, which we come back to below.
+        </p>
+
+        <h3 class="sub-heading">The evidence gate</h3>
+
+        <p>
+          Claims of completion and approvals on pull requests are graph writes that only land if the evidence they cite checks out. Here is the approval gate, trimmed:
+        </p>
+
+        <pre><code class="language-cypher"><span class="code-keyword">MATCH</span> (pr:PR {number:$pr, head_sha:$sha})
+<span class="code-keyword">MATCH</span> (e:Evidence) <span class="code-keyword">WHERE</span> e.id <span class="code-keyword">IN</span> $ids <span class="code-keyword">AND</span> e.executed = true <span class="code-keyword">AND</span> e.sha = $sha
+<span class="code-keyword">WITH</span> pr, collect(e) <span class="code-keyword">AS</span> ev
+<span class="code-keyword">WHERE</span> size($ids) > 0 <span class="code-keyword">AND</span> size(ev) = size($ids)   <span class="code-comment">// the gate: 0 rows = refused</span>
+<span class="code-keyword">CREATE</span> (a:Approval {id:$aid, sha:$sha, status:'active', ...})-[:FOR]->(pr)
+<span class="code-keyword">FOREACH</span> (x <span class="code-keyword">IN</span> ev | <span class="code-keyword">CREATE</span> (a)-[:CITES]->(x))</code></pre>
+
+        <p>
+          It's worth being exact about what this does and doesn't establish. If an agent cites an ID that doesn't exist, a run that never executed, or a run recorded against a different commit, the match comes back short and nothing is written. What this query does <em>not</em> check is the outcome of the run. It proves a cited run happened on this commit, and approvals can cite CI runs as well as local test runs.
+        </p>
+
+        <p>
+          The "done" gate is stricter, because a completion claim has to mean the tests passed. It adds conditions on the kind and result of the evidence, along these lines (simplified; the full query is <code>queries/claim_done.cypher</code>):
+        </p>
+
+        <pre><code class="language-cypher"><span class="code-keyword">WHERE</span> e.id <span class="code-keyword">IN</span> $ids
+  <span class="code-keyword">AND</span> e.kind = <span class="code-string">'test_run'</span>
+  <span class="code-keyword">AND</span> e.executed = true
+  <span class="code-keyword">AND</span> e.exit_code = 0
+  <span class="code-keyword">AND</span> e.sha = $sha</code></pre>
+
+        <p>
+          So the two gates have different requirements, and the guarantee they give is correspondingly different: approvals require real executed evidence on the head commit, and completion claims additionally require a passing test run.
+        </p>
+
+        <h3 class="sub-heading">The stale cascade</h3>
+
+        <p>
+          When executed evidence refutes a claim, a single Cypher statement marks the claim refuted and follows up to three hops of dependents, flagging every approval and task that relied on it as stale. Because the refutation and the staleness marking are issued as one statement rather than two steps, there is no separate moment where the claim is dead and its dependents haven't been told. We have exercised it on seeded graphs with dependents one and two hops from the refuted claim. Two limits are deliberate: dependencies beyond three hops aren't reached, and a dependency that was never recorded as an edge can't be marked stale. Nothing is deleted, which matters because the refuted claim and its evidence are exactly what the retry block reads next time.
+        </p>
+
+        <h3 class="sub-heading">Three separate boundaries</h3>
+
+        <p>
+          "Enforces" can mean three different things here, and they shouldn't be blurred:
+        </p>
+
+        <ol>
+          <li><strong>The graph rejecting an invalid write.</strong> The gate queries above return zero rows and create nothing. This is the layer our evaluation exercises.</li>
+          <li><strong>A host hook blocking an attempted action.</strong> In Claude Code, a <code>PreToolUse</code> hook calls <code>sheldon preflight</code>, and exit code 2 blocks the tool call with the reason shown to the agent. This is the delivery path for the retry block. The trap suite below evaluates the preflight decision, not the hook wiring end to end.</li>
+          <li><strong>A PR check preventing a bad approval from being accepted.</strong> A required GitHub check run is the backstop for anything a local hook can miss; a git pre-commit hook, for example, can be skipped with <code>--no-verify</code>. This is a separate integration from the graph queries.</li>
+        </ol>
+
+        <h3 class="sub-heading">An illustrative walkthrough</h3>
+
+        <p>
+          This is the scenario we designed our demo around. It's an illustration of how the pieces fit, not a recording of a specific run.
+        </p>
+
+        <p>
+          Agent A reaches for the cache-TTL fix that incident INC-12 already recorded as a failure, with CI run E-41 as the refuting evidence. Preflight returns <code>block</code> and agent A sees which evidence ruled it out. Agent B, a cheaper model, reports "done, all tests pass" and cites E-52, which isn't an executed test run on this commit. The done gate returns zero rows and the claim is refused. Then new CI evidence refutes claim C-7, which approval A-3 and task T-9 relied on. One write marks C-7 refuted and A-3 and T-9 stale, so whoever holds T-9 is no longer building on a disproven assumption.
+        </p>
+      </div>
+
+      <!-- 3D WEBGL ILLUSTRATION 3: The Three Enforcement Mechanisms Diorama -->
+      <div class="illustration-block">
+        <div class="diorama-tabs">
+          <button class="diorama-tab enforce-tab active" data-mode="retry">Mechanism 1: The Retry Block</button>
+          <button class="diorama-tab enforce-tab" data-mode="gate">Mechanism 2: The Evidence Gate</button>
+          <button class="diorama-tab enforce-tab" data-mode="cascade">Mechanism 3: 3-Hop Stale Cascade</button>
+        </div>
+
+        <div class="canvas-container" id="enforcement-canvas">
+          <svg class="canvas-overlay-svg"></svg>
+          <div class="canvas-overlay-html"></div>
+          <div class="canvas-hud" id="enforcement-hud">
+            <span class="canvas-hud-focal-tag">PREFLIGHT: BLOCKED (EXIT 2)</span>
+            <code>blocked: refuted by E-41 (repeats INC-12 fix)</code><br>
+            Tool call halted before file write.
+          </div>
+        </div>
+
+        <div class="diorama-action-panel" id="enforce-action-panel">
+          <!-- Dynamic control buttons rendered by enforcementDiorama.js -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SURFACE 4: CARBON (#111111)
+       Section 04: Evaluation, Deterministic Trap Suite, and Limits
+       ========================================================================= -->
+  <section class="surface-dark" id="section-04">
+    <div class="container">
+      <span class="section-label">04 / EVALUATION & BENCHMARKS</span>
+
+      <div class="content-column">
+        <h2 class="section-heading">Does it work?</h2>
+
+        <p>
+          We should be clear about what we measured. We cut live paired runs against real model APIs on purpose. Hosted models aren't deterministic, and we didn't want to publish pass rates or cost figures we couldn't stand behind. Instead we built a deterministic trap suite: scripted scenarios run against the pinned FalkorDB graph (<code>falkordb/falkordb:v4.22.1</code>), each reset from a frozen <code>GRAPH.COPY</code> snapshot, with no LLM anywhere in the loop. It asks a narrow question: given the same graph, which systems stop the bad action, and does any of them wrongly stop a good one?
+        </p>
+
+        <p>
+          <strong>Definitions.</strong> A <em>bad action</em> is one that should be stopped: a retry of a refuted fix (exact or reworded), a "done" claim with no executed run behind it, or an approval resting on a claim that a refuted ancestor, up to three hops away, has invalidated. A <em>good action</em> is one that should go through, such as a clean change with no history or a legitimate alternative to a failed fix. A <em>block</em> is an explicit refusal: for Sheldon, a <code>block</code> from preflight or a refusal from a gate (a <code>warn</code> counts as not blocked); for the keyword baseline, a hit on prior claims or incidents; for mem0, a cosine similarity of at least 0.5. A <em>false block</em> is a good action that got blocked.
+        </p>
+
+        <p>
+          <strong>Arms.</strong> A no-memory control that always allows; a keyword search over prior claims and incidents, standing in for ordinary retrieval memory; <a href="https://github.com/mem0ai/mem0" target="_blank" rel="noopener">mem0</a> with a local embedding model (<code>all-MiniLM-L6-v2</code>, <code>infer=False</code>); and Sheldon. The development set has 21 scenarios (14 bad, 7 good). The held-out set has 10 (7 bad, 3 good) and was scored separately.
+        </p>
+
+        <!-- Evaluation Results Table from blog.md -->
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Arm</th>
+                <th>Development (14 bad, 7 good)</th>
+                <th>Held-out (7 bad, 3 good)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>No memory (control)</strong></td>
+                <td>0 blocked · 0 false blocks · 0.00 ms</td>
+                <td>0 blocked · 0 false blocks · 0.00 ms</td>
+              </tr>
+              <tr>
+                <td><strong>Keyword search</strong></td>
+                <td>8 blocked · 1 false block · 5.31 ms</td>
+                <td>2 blocked · 0 false blocks · 4.58 ms</td>
+              </tr>
+              <tr>
+                <td><strong>mem0 (local embedder)</strong></td>
+                <td>7 blocked · 0 false blocks · 10.14 ms</td>
+                <td>1 blocked · 0 false blocks · 8.72 ms</td>
+              </tr>
+              <tr>
+                <td><strong>Sheldon (FalkorDB)</strong></td>
+                <td><strong>13 blocked</strong> · <strong>0 false blocks</strong> · 5.43 ms</td>
+                <td><strong>5 blocked</strong> · <strong>0 false blocks</strong> · 6.13 ms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size: 13.5px; opacity: 0.8; font-style: italic; margin-top: -16px; margin-bottom: 32px;">
+          Bad actions blocked, good actions wrongly blocked, and median latency per decision in the evaluation harness. We report medians only. These are harness timings, not end-to-end agent latency.
+        </p>
+
+        <h3 class="sub-heading">How to read this</h3>
+
+        <p>
+          Most of the separation comes from three categories. On unexecuted "done" claims, Sheldon blocked all four and keyword search and mem0 blocked none. That isn't surprising: a retrieval system can find text about tests, but "did a test run on this commit?" isn't a retrieval question, and the baselines have no execution gate. On approvals sitting two or three hops from a refuted claim, Sheldon caught all five, and keyword search and mem0 caught two each. On exact retries of refuted fixes, Sheldon blocked all six, against four for keyword search and three for mem0.
+        </p>
+
+        <p>
+          The one false block is instructive. The keyword baseline refused a perfectly good action, replacing a cart cache with a write-through store, because its wording overlapped with a refuted claim. Word overlap is a poor stand-in for "this repeats a known failure."
+        </p>
+
+        <p>
+          On latency, everything ran in single-digit to low-double-digit milliseconds. Sheldon was slightly slower than keyword search on the held-out set, and mem0 was the slowest. The only takeaway we'd draw is that none of them is a bottleneck in this harness.
+        </p>
+
+        <p>
+          <strong>What this is, and isn't.</strong> These are small, scenario-based results, and they show that the mechanisms behave as designed on those scenarios. They don't show that Sheldon outperforms memory systems on real coding tasks. We built the suite around the job Sheldon was designed for, so baselines without an execution gate or a dependency traversal were never going to do well on those categories. The baselines are stand-ins, not tuned products. Mem0 in particular was run in one configuration, and a different embedder or threshold could shift its numbers.
+        </p>
+      </div>
+
+      <!-- INTERACTIVE TRAP SUITE SCENARIO INSPECTOR -->
+      <div style="margin: 48px auto; max-width: var(--canvas-max-width);" id="benchmark-inspector">
+        <!-- Rendered by benchmarkViewer.js -->
+      </div>
+
+      <div class="content-column">
+        <h3 class="sub-heading">What it doesn't guarantee</h3>
+
+        <p>
+          <strong>Reworded retries slip through.</strong> Sheldon's one development miss and both held-out misses were the same failure: the agent rephrased the fix so thoroughly that nothing overlapped with the recorded attempt, and preflight fell back to <code>warn</code>. A looser "same action" matcher exists as a FalkorDB JavaScript function. It has been tested but isn't wired in yet.
+        </p>
+
+        <p>
+          <strong>The gate is only as strong as the tests.</strong> Sheldon can say a test run happened on this commit, and for completion claims that it passed. It can't say the assertions were any good. A nastier version of this was described by <a href="https://x.com/realSamHu/status/2100685063759466784" target="_blank" rel="noopener">@realSamHu</a>: an agent "finished" a bugfix by deleting the failing test, and CI went green for the wrong reason. A real run on a tree with the test deleted is still a real run. Catching that needs a diff-scope check, which is on our roadmap, not in the current build.
+        </p>
+
+        <p>
+          <strong>Coordination isn't evaluated.</strong> The trap suite covers the blocking and staleness decisions. It doesn't run agents through leases, handoffs or resume, and it doesn't test contention. The claim operation is a conditional write designed to give one winner, but a many-claimers concurrency test is still to be done, so treat "exactly one winner" as an intended invariant for now. The hook and check-run integrations are likewise outside what the suite exercises.
+        </p>
+
+        <p>
+          <strong>Cost is a hypothesis.</strong> <a href="https://x.com/GergelyOrosz/status/2101625544626356272" target="_blank" rel="noopener">@GergelyOrosz</a> relayed a company capping top-tier model usage and using cheaper models for everything but planning. If the gate holds regardless of which model is working, cheaper models might become safer to use. We haven't measured that.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SURFACE 5: PLASTER WHITE (#ffffff)
+       Section 05: What We Learned, Structure vs Similarity 3D, and Reproduction
+       ========================================================================= -->
+  <section class="surface-light" id="section-05">
+    <div class="container">
+      <span class="section-label">05 / SYNTHESIS & REPRODUCTION</span>
+
+      <div class="content-column">
+        <h2 class="section-heading">What we learned</h2>
+
+        <p>
+          <strong>Shared memory raises the stakes for being right.</strong> One agent's mistake is a private inconvenience. In a shared memory it's a public fact that others build on.
+        </p>
+
+        <p>
+          <strong>Make the memory enforce, not just inform.</strong> Anything you ask an agent to remember to do will eventually be skipped. A blocking exit code or a query that returns zero rows doesn't depend on its cooperation, as long as you're clear about which boundary you're relying on.
+        </p>
+
+        <p>
+          <strong>Structure beats similarity for this kind of question.</strong> "Is this approval standing on something that has since been disproven?" is a path question, and graphs are good at path questions. FalkorDB's own account <a href="https://x.com/falkordb/status/2092351558465769688" target="_blank" rel="noopener">put the distinction neatly</a>: <em>vector search finds similar text, graph traversal finds connected facts.</em>
+        </p>
+      </div>
+
+      <!-- RETRIEVAL COMPARISON: VECTOR SIMILARITY VS GRAPH TRAVERSAL -->
+      <div class="illustration-block" id="comparison-block">
+        <div class="illustration-header">
+          <div class="illustration-title">
+            <span>Retrieval Comparison: Vector Similarity vs. Graph Traversal</span>
+          </div>
+        </div>
+
+        <div id="struct-canvas">
+          <!-- Populated with two side-by-side comparison panels by initStructureVsVector -->
+        </div>
+      </div>
+
+      <div class="content-column">
+        <h3 class="sub-heading">Try it, inspect it, reproduce it</h3>
+
+        <ul>
+          <li><strong>Repository:</strong> <a href="https://github.com/nothariharan/sheldon" target="_blank" rel="noopener">https://github.com/nothariharan/sheldon</a></li>
+          <li><strong>The evaluation:</strong> the trap suite lives in <code>eval/traps/</code>, with the evaluation framing in the eval <code>README.md</code>, the case definitions in <code>docs/plan/eval-def.md</code>, and the scored output in <code>results.md</code>.</li>
+          <li><strong>The queries:</strong> the gate and cascade queries are in <code>queries/</code> (<code>approve_pr.cypher</code>, <code>claim_done.cypher</code>, <code>refute_claim.cypher</code>, <code>recall_r1.cypher</code>), so you can check them against everything above.</li>
+          <li><strong>Environment:</strong> FalkorDB pinned to <code>falkordb/falkordb:v4.22.1</code>; every scenario resets from a frozen <code>GRAPH.COPY</code>, so runs are repeatable.</li>
+          <li><strong>Run it:</strong> <code>sheldon eval run --suite traps --pin v4.22.1</code></li>
+        </ul>
+
+        <p style="margin-top: 32px;">
+          If you run more than one agent on the same codebase and have watched them rediscover each other's dead ends, we'd like to hear how it goes.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Architectural Centered Footer -->
+  <footer class="footer">
+    <div>SHELDON · REPOSITORY AGENT MEMORY</div>
+    <div>ONE REPO, MANY AGENTS, ONE MEMORY</div>
+    <div>BPOWELL MINIMAL SPECIFICATION</div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
